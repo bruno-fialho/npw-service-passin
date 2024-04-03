@@ -30,4 +30,7 @@ jobs:
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
 
       - name: Push image
-        run: docker push brunofialho/nlw-service-passin:${{ steps.generate_sha.outputs.sha }}
+        run: |
+          docker push brunofialho/nlw-service-passin:${{ steps.generate_sha.outputs.sha }}
+          docker tag brunofialho/nlw-service-passin:${{ steps.generate_sha.outputs.sha }} brunofialho/nlw-service-passin:latest
+          docker push brunofialho/nlw-service-passin:latest
